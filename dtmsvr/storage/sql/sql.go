@@ -75,7 +75,7 @@ func (s *Store) ScanTransGlobalStores(position *string, limit int64, condition s
 		query = query.Where("create_time <= ?", condition.CreateTimeEnd)
 	}
 
-	dbr := query.Order("id desc").Limit(int(limit)).Find(&globals)
+	dbr := query.Order("create_time desc").Limit(int(limit)).Find(&globals)
 
 	if dbr.RowsAffected < limit {
 		*position = ""
